@@ -82,13 +82,9 @@ public class VehicleDbController extends AbstractDbController<Vehicle> {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Vehicle> cq = cb.createQuery(Vehicle.class);
         Root<Vehicle> from = cq.from(Vehicle.class);
-//        try {
-            return em.createQuery(cq.select(from)
-                    .where(cb.equal(from.get("licensePlate"), licensePlate)))
-                    .getSingleResult();
-//        } catch (javax.persistence.EntityNotFoundException e) {
-//            throw new EntityNotFoundException(e);
-//        }
+        return em.createQuery(cq.select(from)
+                .where(cb.equal(from.get("licensePlate"), licensePlate)))
+                .getSingleResult();
     }
 
     @Override
