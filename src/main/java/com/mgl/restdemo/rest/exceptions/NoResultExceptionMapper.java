@@ -1,4 +1,4 @@
-package com.mgl.restdemo.rest.exceptionmappers;
+package com.mgl.restdemo.rest.exceptions;
 
 import javax.persistence.NoResultException;
 import javax.ws.rs.core.Response;

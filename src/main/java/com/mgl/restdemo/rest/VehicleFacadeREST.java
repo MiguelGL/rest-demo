@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -77,13 +78,17 @@ public class VehicleFacadeREST extends AbstractFacade<Vehicle> {
         return String.valueOf(super.count());
     }
 
-    public Vehicle findByLicensePlate(String licensePlate) {
+    public Vehicle findByLicensePlate(String licensePlate) throws NoResultException {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Vehicle> cq = cb.createQuery(Vehicle.class);
         Root<Vehicle> from = cq.from(Vehicle.class);
-        return em.createQuery(cq.select(from)
-                .where(cb.equal(from.get("licensePlate"), licensePlate)))
-                .getSingleResult();
+//        try {
+            return em.createQuery(cq.select(from)
+                    .where(cb.equal(from.get("licensePlate"), licensePlate)))
+                    .getSingleResult();
+//        } catch (javax.persistence.EntityNotFoundException e) {
+//            throw new EntityNotFoundException(e);
+//        }
     }
 
     @Override
