@@ -32,6 +32,8 @@ public class Vehicle implements Serializable {
 
     private @NonNull @NotNull String licensePlate = "";
 
+    private int sortIndex = 0;
+
     @OneToMany
     @XmlTransient
     private @NonNull Set<Location> locations = Collections.emptySet();
