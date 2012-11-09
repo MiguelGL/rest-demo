@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +19,7 @@ import lombok.NonNull;
 
 @Entity
 @Data @EqualsAndHashCode(of="id")
+@XmlRootElement
 public class Vehicle implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

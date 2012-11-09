@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,6 +21,7 @@ import lombok.NonNull;
 
 @Entity
 @Data @EqualsAndHashCode(of="id")
+@XmlRootElement
 public class Customer implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
