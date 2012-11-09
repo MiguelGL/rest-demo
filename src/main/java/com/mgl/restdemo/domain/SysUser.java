@@ -2,6 +2,7 @@ package com.mgl.restdemo.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,9 +29,13 @@ public class SysUser implements Serializable {
     @XmlTransient
     private @NonNull Customer customer = null;
 
+    @Column(unique=true)
     private @NonNull @NotNull String username = "";
+    @Column(unique=true)
     private @NonNull @NotNull String email = "";
 
     private @NonNull @NotNull String md5Password = "";
+
+    private @NotNull boolean administrator = false;
 
 }

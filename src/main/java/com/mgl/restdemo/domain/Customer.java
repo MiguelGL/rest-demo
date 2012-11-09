@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,9 +30,12 @@ public class Customer implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique=true)
     private @NonNull @NotNull String name = "";
+
     private @NonNull @NotNull String description = "";
 
+    @Column(unique=true)
     private @NonNull @NotNull String apiKey = "";
 
     @Temporal(TemporalType.TIMESTAMP)

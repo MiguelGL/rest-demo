@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +26,8 @@ import lombok.NonNull;
 @XmlRootElement
 public class Vehicle implements Serializable {
 
+    public static enum Kind { CAR, VAN, MOTORBIKE }
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -32,6 +36,9 @@ public class Vehicle implements Serializable {
     private @NonNull Customer customer = null;
 
     private @NonNull @NotNull String licensePlate = "";
+
+    @Enumerated(EnumType.STRING)
+    private @NonNull @NotNull Kind kind = Kind.CAR;
 
     private int sortIndex = 0;
 
