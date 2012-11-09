@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,9 +35,11 @@ public class Customer implements Serializable {
     private @NonNull @NotNull Date creationTs = new Date();
 
     @OneToMany
+    @XmlTransient
     private @NonNull Set<SysUser> users = Collections.emptySet();
 
     @OneToMany
+    @XmlTransient
     private @NonNull Set<Vehicle> vehicles = Collections.emptySet();
 
 }

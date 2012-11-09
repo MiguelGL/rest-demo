@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,6 +27,7 @@ public class Location implements Serializable {
     private Long id;
 
     @ManyToOne(optional=false)
+    @XmlTransient
     private @NonNull Vehicle vehicle = null;
 
     @Temporal(TemporalType.TIMESTAMP)

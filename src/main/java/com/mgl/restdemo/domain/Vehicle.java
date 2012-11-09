@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,11 +27,13 @@ public class Vehicle implements Serializable {
     private Long id;
 
     @ManyToOne(optional=false)
+    @XmlTransient
     private @NonNull Customer customer = null;
 
     private @NonNull @NotNull String licensePlate = "";
 
     @OneToMany
+    @XmlTransient
     private @NonNull Set<Location> locations = Collections.emptySet();
 
 }
