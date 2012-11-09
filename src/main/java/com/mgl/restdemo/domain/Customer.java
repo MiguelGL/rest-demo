@@ -18,10 +18,11 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.FluentSetter;
 import lombok.NonNull;
 
 @Entity
-@Data @EqualsAndHashCode(of="id")
+@Data @EqualsAndHashCode(of="id") @FluentSetter
 @XmlRootElement
 public class Customer implements Serializable {
 
@@ -30,6 +31,8 @@ public class Customer implements Serializable {
 
     private @NonNull @NotNull String name = "";
     private @NonNull @NotNull String description = "";
+
+    private @NonNull @NotNull String apiKey = "";
 
     @Temporal(TemporalType.TIMESTAMP)
     private @NonNull @NotNull Date creationTs = new Date();

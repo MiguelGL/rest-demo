@@ -16,10 +16,11 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.FluentSetter;
 import lombok.NonNull;
 
 @Entity
-@Data @EqualsAndHashCode(of="id")
+@Data @EqualsAndHashCode(of="id") @FluentSetter
 @XmlRootElement
 public class Location implements Serializable {
 
