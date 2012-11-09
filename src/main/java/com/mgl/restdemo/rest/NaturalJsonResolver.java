@@ -20,7 +20,7 @@ import lombok.extern.java.Log;
 @Log
 public class NaturalJsonResolver implements ContextResolver<JAXBContext> {
 
-    private static final String PACKAGE = NaturalJsonResolver.class.getPackage().getName();
+    private static final String PACKAGE = "com.mgl.restdemo.domain";
 
     private final JAXBContext jsonContext;
 
