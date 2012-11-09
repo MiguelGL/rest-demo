@@ -5,6 +5,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -72,6 +75,15 @@ public class VehicleFacadeREST extends AbstractFacade<Vehicle> {
     @Produces("text/plain")
     public String countREST() {
         return String.valueOf(super.count());
+    }
+
+    public Vehicle findByLicensePlate(String licensePlate) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Vehicle> cq = cb.createQuery(Vehicle.class);
+        Root<Vehicle> from = cq.from(Vehicle.class);
+        return em.createQuery(cq.select(from)
+                .where(cb.equal(from.get("licensePlate"), licensePlate)))
+                .getSingleResult();
     }
 
     @Override
