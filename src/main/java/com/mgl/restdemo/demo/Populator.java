@@ -57,7 +57,7 @@ public class Populator {
 
         userController.create(user2);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             Vehicle vehicle = new Vehicle()
                 .customer(c1)
                 .licensePlate(String.format("%s-%02d", c1.getName(), i))
