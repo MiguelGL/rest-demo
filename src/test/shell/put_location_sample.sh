@@ -1,6 +1,9 @@
 #!/bin/bash
 
-PLATE="MRW-01"
+CUSTOMER="MRW"
+PLATE="$CUSTOMER-01"
+
+API_KEY=$(echo -n $CUSTOMER | md5)
 
 long=$(($RANDOM / 1000))
 lat=$(($RANDOM / 1000))
@@ -8,7 +11,7 @@ lat=$(($RANDOM / 1000))
 curl \
     -X PUT \
     -v -N \
-    -H "X-API-Key: eddd4796c4271d874f674d16cb0d7623" \
+    -H "X-API-Key: $API_KEY" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -d "{\"longitude\": $long, \"latitude\": $lat}" \
