@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -23,7 +25,7 @@ import lombok.NonNull;
 
 @Entity
 @Data @EqualsAndHashCode(of="id") @FluentSetter
-@XmlRootElement
+@XmlRootElement @XmlAccessorType(XmlAccessType.FIELD)
 public class Vehicle implements Serializable {
 
     public static enum Kind { CAR, VAN, MOTORBIKE }
