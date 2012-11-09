@@ -1,14 +1,10 @@
-package com.mgl.restdemo.rest;
+package com.mgl.restdemo.db;
 
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,29 +14,29 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.mgl.restdemo.domain.Vehicle;
+import com.mgl.restdemo.domain.Customer;
 
 @Stateless
-@Path("com.mgl.restdemo.domain.vehicle")
-public class VehicleFacadeREST extends AbstractFacade<Vehicle> {
+@Path("customer")
+public class CustomerDbController extends AbstractDbController<Customer> {
     @PersistenceContext(unitName = "RestDemo")
     private EntityManager em;
 
-    public VehicleFacadeREST() {
-        super(Vehicle.class);
+    public CustomerDbController() {
+        super(Customer.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Vehicle entity) {
+    public void create(Customer entity) {
         super.create(entity);
     }
 
     @PUT
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void edit(Vehicle entity) {
+    public void edit(Customer entity) {
         super.edit(entity);
     }
 
@@ -53,21 +49,21 @@ public class VehicleFacadeREST extends AbstractFacade<Vehicle> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Vehicle find(@PathParam("id") Long id) {
+    public Customer find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<Vehicle> findAll() {
+    public List<Customer> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<Vehicle> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Customer> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
@@ -76,19 +72,6 @@ public class VehicleFacadeREST extends AbstractFacade<Vehicle> {
     @Produces("text/plain")
     public String countREST() {
         return String.valueOf(super.count());
-    }
-
-    public Vehicle findByLicensePlate(String licensePlate) throws NoResultException {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Vehicle> cq = cb.createQuery(Vehicle.class);
-        Root<Vehicle> from = cq.from(Vehicle.class);
-//        try {
-            return em.createQuery(cq.select(from)
-                    .where(cb.equal(from.get("licensePlate"), licensePlate)))
-                    .getSingleResult();
-//        } catch (javax.persistence.EntityNotFoundException e) {
-//            throw new EntityNotFoundException(e);
-//        }
     }
 
     @Override

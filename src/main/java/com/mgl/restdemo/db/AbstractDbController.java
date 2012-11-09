@@ -1,13 +1,13 @@
-package com.mgl.restdemo.rest;
+package com.mgl.restdemo.db;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
-public abstract class AbstractFacade<T> {
+public abstract class AbstractDbController<T> {
     private Class<T> entityClass;
 
-    public AbstractFacade(Class<T> entityClass) {
+    public AbstractDbController(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 

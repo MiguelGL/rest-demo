@@ -1,4 +1,4 @@
-package com.mgl.restdemo.rest;
+package com.mgl.restdemo.db;
 
 import java.util.List;
 
@@ -14,29 +14,29 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.mgl.restdemo.domain.Customer;
+import com.mgl.restdemo.domain.Location;
 
 @Stateless
-@Path("customer")
-public class CustomerFacadeREST extends AbstractFacade<Customer> {
+@Path("location")
+public class LocationDbController extends AbstractDbController<Location> {
     @PersistenceContext(unitName = "RestDemo")
     private EntityManager em;
 
-    public CustomerFacadeREST() {
-        super(Customer.class);
+    public LocationDbController() {
+        super(Location.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Customer entity) {
+    public void create(Location entity) {
         super.create(entity);
     }
 
     @PUT
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void edit(Customer entity) {
+    public void edit(Location entity) {
         super.edit(entity);
     }
 
@@ -49,21 +49,21 @@ public class CustomerFacadeREST extends AbstractFacade<Customer> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Customer find(@PathParam("id") Long id) {
+    public Location find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<Customer> findAll() {
+    public List<Location> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<Customer> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Location> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

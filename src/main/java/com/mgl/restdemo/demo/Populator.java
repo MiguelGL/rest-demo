@@ -10,18 +10,18 @@ import javax.inject.Inject;
 import com.mgl.restdemo.domain.Customer;
 import com.mgl.restdemo.domain.SysUser;
 import com.mgl.restdemo.domain.Vehicle;
-import com.mgl.restdemo.rest.CustomerFacadeREST;
-import com.mgl.restdemo.rest.SysUserFacadeREST;
-import com.mgl.restdemo.rest.VehicleFacadeREST;
+import com.mgl.restdemo.db.CustomerDbController;
+import com.mgl.restdemo.db.SysUserDbController;
+import com.mgl.restdemo.db.VehicleDbController;
 import com.mgl.restdemo.util.Util;
 
 @Singleton
 @Startup
 public class Populator {
 
-    @Inject CustomerFacadeREST customerController;
-    @Inject SysUserFacadeREST userController;
-    @Inject VehicleFacadeREST vehicleController;
+    @Inject CustomerDbController customerController;
+    @Inject SysUserDbController userController;
+    @Inject VehicleDbController vehicleController;
 
     // TODO: no exists -! not found
     // TODO: constraint fail -! 400 algo

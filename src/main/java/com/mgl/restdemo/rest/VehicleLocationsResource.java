@@ -1,5 +1,7 @@
 package com.mgl.restdemo.rest;
 
+import com.mgl.restdemo.db.VehicleDbController;
+import com.mgl.restdemo.db.LocationDbController;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
@@ -16,8 +18,8 @@ import com.mgl.restdemo.domain.Vehicle;
 @Path("vehicle/{licensePlate}/locations")
 public class VehicleLocationsResource {
 
-    @Inject VehicleFacadeREST vehicleDbController;
-    @Inject LocationFacadeREST locationDbController;
+    @Inject VehicleDbController vehicleDbController;
+    @Inject LocationDbController locationDbController;
 
     // TODO: entity missing: 404
 

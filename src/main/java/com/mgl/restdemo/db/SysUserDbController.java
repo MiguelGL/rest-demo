@@ -1,4 +1,4 @@
-package com.mgl.restdemo.rest;
+package com.mgl.restdemo.db;
 
 import java.util.List;
 
@@ -18,11 +18,11 @@ import com.mgl.restdemo.domain.SysUser;
 
 @Stateless
 @Path("com.mgl.restdemo.domain.sysuser")
-public class SysUserFacadeREST extends AbstractFacade<SysUser> {
+public class SysUserDbController extends AbstractDbController<SysUser> {
     @PersistenceContext(unitName = "RestDemo")
     private EntityManager em;
 
-    public SysUserFacadeREST() {
+    public SysUserDbController() {
         super(SysUser.class);
     }
 
