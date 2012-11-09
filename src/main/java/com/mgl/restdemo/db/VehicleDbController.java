@@ -1,6 +1,7 @@
 package com.mgl.restdemo.db;
 
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -36,6 +37,15 @@ public class VehicleDbController extends AbstractDbController<Vehicle> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+
+    public List<Vehicle> findByCustomer(Customer customer) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Vehicle> cq = cb.createQuery(Vehicle.class);
+        Root<Vehicle> from = cq.from(Vehicle.class);
+        return em.createQuery(cq.select(from)
+                .where(cb.equal(from.get("customer"), customer)))
+                .getResultList();
     }
 
 }
