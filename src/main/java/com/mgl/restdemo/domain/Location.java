@@ -37,6 +37,6 @@ public class Location implements Serializable {
     private @NonNull @NotNull Date ts = new Date();;
 
     private @NotNull double latitude;
-    private @NotNull double longiture;
+    private @NotNull double longitude;
 
 }
