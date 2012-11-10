@@ -3,6 +3,7 @@ package com.mgl.restdemo.db;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 
 public abstract class AbstractDbController<T> {
     private Class<T> entityClass;
@@ -17,16 +18,21 @@ public abstract class AbstractDbController<T> {
         getEntityManager().persist(entity);
     }
 
-    public void edit(T entity) {
-        getEntityManager().merge(entity);
+    public T edit(T entity) {
+        return getEntityManager().merge(entity);
     }
 
     public void remove(T entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
     }
 
-    public T find(Object id) {
-        return getEntityManager().find(entityClass, id);
+    public T find(Object id) throws EntityNotFoundException {
+        T entity = getEntityManager().find(entityClass, id);
+        if (entity == null) {
+            throw new EntityNotFoundException();
+        } else {
+            return entity;
+        }
     }
 
     public List<T> findAll() {

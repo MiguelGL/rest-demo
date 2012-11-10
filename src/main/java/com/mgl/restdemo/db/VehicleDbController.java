@@ -34,11 +34,6 @@ public class VehicleDbController extends AbstractDbController<Vehicle> {
                 .getSingleResult();
     }
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-
     public List<Vehicle> findByCustomer(Customer customer) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Vehicle> cq = cb.createQuery(Vehicle.class);
@@ -46,6 +41,24 @@ public class VehicleDbController extends AbstractDbController<Vehicle> {
         return em.createQuery(cq.select(from)
                 .where(cb.equal(from.get("customer"), customer)))
                 .getResultList();
+    }
+
+    public Vehicle findByLicensePlate(String licensePlate) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Vehicle> cq = cb.createQuery(Vehicle.class);
+        Root<Vehicle> from = cq.from(Vehicle.class);
+        try {
+            return em.createQuery(cq.select(from)
+                    .where(cb.equal(from.get("licensePlate"), licensePlate)))
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
     }
 
 }
